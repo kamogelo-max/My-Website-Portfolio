@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <title>Image Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            background-color: #ff004f;
+        }
+        img {
+            width: 100%;
+            height: auto;
+            border: 2px solid #000;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+        .container {
+            padding: 20px;
+        }
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 10px;
+        }
+        .gallery-item {
+            width: 200px;
+            height: 200px;
+            overflow: hidden;
+            border-radius: 8px;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.8);
+            justify-content: center;
+            align-items: center;
+        }
+        .modal-content {
+            position: relative;
+            max-width: 90%;
+            max-height: 80%;
+        }
+        .modal-content img {
+            width: 100%;
+            height: auto;
+            border: none;
+        }
+        .close {
+            position: absolute;
+            top: 15px;
+            right: 25px;
+            color: #fff;
+            font-size: 35px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .close:hover,
+        .close:focus {
+            color: #ddd;
+            text-decoration: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome to the Image Page</h1>
+        <div class="gallery">
+            <div class="gallery-item"><img src="image_1.jfif" alt="Image 1"></div>
+            <div class="gallery-item"><img src="image_11.jfif" alt=" Image 2"></div>
+            <div class="gallery-item"><img src="image_2.jfif" alt=" Image 3"></div>
+            <div class="gallery-item"><img src="image_12.jfif" alt=" Image 4"></div>
+            <div class="gallery-item"><img src="image_3.jfif" alt=" Image 5"></div>
+            <div class="gallery-item"><img src="image_4.jfif" alt=" Image 6" ></div>
+            <div class="gallery-item"><img src="image_5.jfif" alt=" Image 7"></div>
+            <div class="gallery-item"> <img src="image_7.jfif" alt=" Image 8"></div>
+            <div class="gallery-item"> <img src="image_9.jfif" alt=" Image 9"></div>
+            <div class="gallery-item"><img src="image_18.jpg" alt=" Image 10"></div>
+            <div class="gallery-item"><img src="image_14.png" alt=" Image 11"></div>
+            <div class="gallery-item"><img src="image_13.png" alt=" Image 12"></div>
+            <div class="gallery-item"><img src="image_15.png" alt=" Image 13"></div>
+            <div class="gallery-item"><img src="image_16.jpg" alt=" Image 14"></div>
+            <div class="gallery-item"><img src="image_17.jpg" alt=" Image 15"></div>
+        </div>
+    </div>
+    <div id="myModal" class="modal">
+        <div >
+        <span class="close">&times;</span>
+        <div class="modal-content">
+            <img id="modalImage" src="" alt="Large View">
+        </div>
+    </div>
+
+    <script>
+
+        var modal = document.getElementById("myModal");
+
+        var modalImg = document.getElementById("modalImage");
+        var imgs = document.querySelectorAll(".gallery-item img");
+
+        imgs.forEach(function(img) {
+            img.onclick = function() {
+                modal.style.display = "flex";
+                modalImg.src = this.src;
+            }
+        });
+
+        var close = document.getElementsByClassName("close")[0];
+        var exit = document.getElementsByClassName("exit")[0];
+        var homeButton = document.getElementsByClassName("home")[0]
+
+        function closeModal() {
+            modal.style.display = "none";
+        }
+
+        close.onclick = closeModal;
+        exit.onclick = closeModal;
+
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                closeModal();
+            }
+        }
+        function goHome() {
+            window.location.href = 'Main.html'; 
+        }
+    </script>
+</body>
+</html>
